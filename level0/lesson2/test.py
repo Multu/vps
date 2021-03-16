@@ -13,6 +13,8 @@ class SquirrelTest(unittest.TestCase):
     def test_odometer_negative(self):
         self.assertEqual(main.odometer([10, 1, -15, 1]), 10)
         self.assertEqual(main.odometer([10, 1, -15, -1]), 10)
+        self.assertEqual(main.odometer([-15, -1]), 0)
+        self.assertEqual(main.odometer([15, -1]), 0)
 
     def test_odometer_odd(self):
         self.assertEqual(main.odometer([10, 1, 15]), 10)
