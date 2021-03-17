@@ -1,5 +1,6 @@
 def odometer(oksana):
     km = 0
+    total_time = 0
 
     # If length of `oksana` list is odd, then ignore last element.
     max_even_index = len(oksana)
@@ -10,7 +11,9 @@ def odometer(oksana):
         speed = oksana[i]
         time = oksana[i + 1]
 
-        if speed > 0 and time > 0:
-            km += speed * time
+        if time > total_time and speed >= 0:
+            path_time = time - total_time
+            total_time = time
+            km += speed * path_time
 
     return km
