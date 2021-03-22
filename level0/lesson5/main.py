@@ -20,6 +20,3 @@ def SynchronizingTables(N, ids, salary):
         replaced_salary[i] = sorted_salary[asc_number]
 
     return replaced_salary
-
-test = SynchronizingTables(7, [1, 3, 2, 4, 5, 7, 6], [1000, 2000, 3000, 4000, 5000, 6000, 7000])
-print(test)
