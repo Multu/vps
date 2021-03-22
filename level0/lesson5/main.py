@@ -1,13 +1,13 @@
 def SynchronizingTables(N, ids, salary):
 
     # Sort salary list by asc.
+    sorted_salary = list(salary)
     for i in range(N - 1):
         for j in range(i + 1, N):
-            if salary[j] < salary[i]:
-                salary[i], salary[j] = salary[j], salary[i]
+            if sorted_salary[j] < sorted_salary[i]:
+                sorted_salary[i], sorted_salary[j] = sorted_salary[j], sorted_salary[i]
 
-    shift_number = 0
-    max_shift_index = 0
+    replaced_salary = list(salary)
 
     for i in range(N):
         # Calculate count of ids elements,
@@ -17,21 +17,9 @@ def SynchronizingTables(N, ids, salary):
             if ids[j] < ids[i]:
                 asc_number += 1
 
-        # Put to the `i` position the element with `asc_number` index.
-        # If replacement is needed, then shift the rest of
-        # the elements to `shift_number` positions to the right.
-        needle_pos = asc_number + shift_number
+        replaced_salary[i] = sorted_salary[asc_number]
 
-        print(i, needle_pos, salary)
+    return replaced_salary
 
-        if needle_pos != i:
-            for j in range(needle_pos, i, -1):
-                salary[j], salary[j - 1] = salary[j - 1], salary[j]
-            shift_number += 1
-
-        print(salary)
-
-    return salary
-
-test = SynchronizingTables(3, [3, 1024], [20000, 100000, 90000])
+test = SynchronizingTables(7, [1, 3, 2, 4, 5, 7, 6], [1000, 2000, 3000, 4000, 5000, 6000, 7000])
 print(test)
