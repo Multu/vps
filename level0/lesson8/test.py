@@ -14,6 +14,14 @@ class WordSearchTest(unittest.TestCase):
             random.shuffle(in_data)
             self.assertEqual(main.SumOfThe(len(in_data), in_data), out_data)
 
+
+        in_data = [100 , -50, 10, -25, 90, -35, 90]
+        out_data = 90
+
+        for i in range(100):
+            random.shuffle(in_data)
+            self.assertEqual(main.SumOfThe(len(in_data), in_data), out_data)
+
     def test_random(self):
         for i in range(1000):
             n = random.randint(1, 20)
