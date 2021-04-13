@@ -14,7 +14,7 @@ def Unmanned(L, N, track):
         # Total burning time of red and green colors.
         time_lights_total = time_red + time_green
 
-        if time_lights_total:
+        if time_lights_total and L > time_road:
             actual_lights_moment = actual_time_road % time_lights_total
             if actual_lights_moment < time_red:
                 wait_time = time_red - actual_lights_moment
