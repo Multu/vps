@@ -145,7 +145,6 @@ def get_char(n):
     cur_state = current_state()
     pointer = cur_state[0]
     cur_str = get_string(pointer)
-    print(cur_str)
     try:
         pos_char = cur_str[n]
     except Exception:
