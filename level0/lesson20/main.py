@@ -26,7 +26,7 @@ def current_state():
     return [pointer, undo_state]
 
 
-def save_pointer(pointer, is_undo=False):
+def save_state(pointer, is_undo=False):
     f = open(pointer_filename, 'w')
     f.write(str(pointer) + '\n')
     if is_undo:
@@ -105,7 +105,7 @@ def add(part_str):
             new_pointer = pointer + 1
             add_string(new_str)
 
-        save_pointer(new_pointer)
+        save_state(new_pointer)
     else:
         new_str = cur_str
 
@@ -134,7 +134,7 @@ def delete(n):
             new_pointer = pointer + 1
             add_string(new_str)
 
-        save_pointer(new_pointer)
+        save_state(new_pointer)
     else:
         new_str = cur_str
 
@@ -161,7 +161,7 @@ def undo():
     if pointer > 0:
         pointer -= 1
 
-    save_pointer(pointer, is_undo=True)
+    save_state(pointer, is_undo=True)
     new_str = get_string(pointer)
 
     return new_str
@@ -178,7 +178,7 @@ def redo():
     if pointer < count_lines - 1:
         pointer += 1
 
-    save_pointer(pointer)
+    save_state(pointer)
     new_str = get_string(pointer)
 
     return new_str
