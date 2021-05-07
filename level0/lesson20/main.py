@@ -65,6 +65,17 @@ def add_string(new_str):
     f.close()
 
 
+def edit_string(line, new_str):
+    f = open(history_filename, 'r')
+    lines = f.readlines()
+    f.close()
+
+    lines[line] = new_str + '\n'
+    f = open(history_filename, 'w')
+    f.writelines(lines)
+    f.close()
+
+
 def parse_command(command):
     n_chars = []
     param_chars = []
@@ -150,6 +161,8 @@ def get_char(n):
     except Exception:
         pos_char = ''
 
+    edit_string(pointer, pos_char)
+
     return pos_char
 
 
@@ -218,5 +231,3 @@ def BastShoe(command):
     if n == COMMAND_REDO:
         new_str = redo()
         return new_str
-
-
