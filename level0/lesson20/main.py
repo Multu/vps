@@ -231,3 +231,8 @@ def BastShoe(command):
     if n == COMMAND_REDO:
         new_str = redo()
         return new_str
+
+    cur_state = current_state()
+    pointer = cur_state[0]
+    cur_str = get_string(pointer)
+    return cur_str
