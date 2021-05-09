@@ -12,102 +12,87 @@ class BastShoeTest(unittest.TestCase):
         os.remove(main.pointer_filename)
 
     def test_case1(self):
-        data = [
-            ['1 Привет', 'Привет'],
-            ['1 , Мир!', 'Привет, Мир!'],
-            ['1 ++', 'Привет, Мир!++'],
-            ['2 2', 'Привет, Мир!'],
-            ['4', 'Привет, Мир!++'],
-            ['4', 'Привет, Мир!'],
-            ['1 *', 'Привет, Мир!*'],
-            ['4', 'Привет, Мир!'],
-            ['4', 'Привет, Мир!'],
-            ['4', 'Привет, Мир!'],
-            ['3 6', ','],
-            ['2 100', ''],
-            ['1 Привет', 'Привет'],
-            ['1 , Мир!', 'Привет, Мир!'],
-            ['1 ++', 'Привет, Мир!++'],
-            ['4', 'Привет, Мир!'],
-            ['4', 'Привет'],
-            ['5', 'Привет, Мир!'],
-            ['4', 'Привет'],
-            ['5', 'Привет, Мир!'],
-            ['5', 'Привет, Мир!++'],
-            ['5', 'Привет, Мир!++'],
-            ['5', 'Привет, Мир!++'],
-            ['4', 'Привет, Мир!'],
-            ['4', 'Привет'],
-            ['2 2', 'Прив'],
-            ['4', 'Привет'],
-            ['5', 'Прив'],
-            ['5', 'Прив'],
-            ['5', 'Прив'],
-        ]
-
-        for i in range(len(data)):
-            dataset = data[i]
-            self.assertEqual(main.BastShoe(dataset[0]), dataset[1], msg=f'{i+1} line')
+        self.assertEqual(main.BastShoe('1 Привет'), 'Привет')
+        self.assertEqual(main.BastShoe('1 , Мир!'), 'Привет, Мир!')
+        self.assertEqual(main.BastShoe('1 ++'), 'Привет, Мир!++')
+        self.assertEqual(main.BastShoe('2 2'), 'Привет, Мир!')
+        self.assertEqual(main.BastShoe('4'), 'Привет, Мир!++')
+        self.assertEqual(main.BastShoe('4'), 'Привет, Мир!')
+        self.assertEqual(main.BastShoe('1 *'), 'Привет, Мир!*')
+        self.assertEqual(main.BastShoe('4'), 'Привет, Мир!')
+        self.assertEqual(main.BastShoe('4'), 'Привет, Мир!')
+        self.assertEqual(main.BastShoe('4'), 'Привет, Мир!')
+        self.assertEqual(main.BastShoe('3 6'), ',')
+        self.assertEqual(main.BastShoe('2 100'), '')
+        self.assertEqual(main.BastShoe('1 Привет'), 'Привет')
+        self.assertEqual(main.BastShoe('1 , Мир!'), 'Привет, Мир!')
+        self.assertEqual(main.BastShoe('1 ++'), 'Привет, Мир!++')
+        self.assertEqual(main.BastShoe('4'), 'Привет, Мир!')
+        self.assertEqual(main.BastShoe('4'), 'Привет')
+        self.assertEqual(main.BastShoe('5'), 'Привет, Мир!')
+        self.assertEqual(main.BastShoe('4'), 'Привет')
+        self.assertEqual(main.BastShoe('5'), 'Привет, Мир!')
+        self.assertEqual(main.BastShoe('5'), 'Привет, Мир!++')
+        self.assertEqual(main.BastShoe('5'), 'Привет, Мир!++')
+        self.assertEqual(main.BastShoe('5'), 'Привет, Мир!++')
+        self.assertEqual(main.BastShoe('4'), 'Привет, Мир!')
+        self.assertEqual(main.BastShoe('4'), 'Привет')
+        self.assertEqual(main.BastShoe('2 2'), 'Прив')
+        self.assertEqual(main.BastShoe('4'), 'Привет')
+        self.assertEqual(main.BastShoe('5'), 'Прив')
+        self.assertEqual(main.BastShoe('5'), 'Прив')
+        self.assertEqual(main.BastShoe('5'), 'Прив')
 
     def test_case2(self):
-        data = [
-            ['1 Зарядка', 'Зарядка'],
-            ['1  для ума', 'Зарядка для ума'],
-            ['2 4', 'Зарядка для'],
-            ['1  меня', 'Зарядка для меня'],
-            ['4', 'Зарядка для'],
-            ['4', 'Зарядка для ума'],
-            ['3 3', 'я'],
-            ['1  молодец', 'я молодец'],
-            ['2 8', 'я'],
-            ['5', 'я'],
-            ['4', 'я молодец'],
-        ]
-
-        for i in range(len(data)):
-            dataset = data[i]
-            self.assertEqual(main.BastShoe(dataset[0]), dataset[1], msg=f'{i+1} line')
+        self.assertEqual(main.BastShoe('1 Зарядка'), 'Зарядка')
+        self.assertEqual(main.BastShoe('1  для ума'), 'Зарядка для ума')
+        self.assertEqual(main.BastShoe('2 4'), 'Зарядка для')
+        self.assertEqual(main.BastShoe('1  меня'), 'Зарядка для меня')
+        self.assertEqual(main.BastShoe('4'), 'Зарядка для')
+        self.assertEqual(main.BastShoe('4'), 'Зарядка для ума')
+        self.assertEqual(main.BastShoe('3 3'), 'я')
+        self.assertEqual(main.BastShoe('1  молодец'), 'я молодец')
+        self.assertEqual(main.BastShoe('2 8'), 'я')
+        self.assertEqual(main.BastShoe('5'), 'я')
+        self.assertEqual(main.BastShoe('4'), 'я молодец')
 
     def test_case3(self):
-        data = [
-            ['1 Мастер', 'Мастер'],
-            ['1  И Маргарита', 'Мастер И Маргарита'],
-            ['1 ?!', 'Мастер И Маргарита?!'],
-            ['2 5', 'Мастер И Маргар'],
-            ['4', 'Мастер И Маргарита?!'],
-            ['4', 'Мастер И Маргарита'],
-            ['5', 'Мастер И Маргарита?!'],
-            ['5', 'Мастер И Маргар'],
-            ['5', 'Мастер И Маргар'],
-            ['2 2', 'Мастер И Марг'],
-            ['3 11', 'р'],
-            ['1 оман.', 'роман.'],
-            ['2 10', ''],
-            ['1 классика', 'классика'],
-            ['3 15', ''],
-        ]
-
-        for i in range(len(data)):
-            dataset = data[i]
-            self.assertEqual(main.BastShoe(dataset[0]), dataset[1], msg=f'{i+1} line')
+        self.assertEqual(main.BastShoe('1 Мастер'), 'Мастер')
+        self.assertEqual(main.BastShoe('1  И Маргарита'), 'Мастер И Маргарита')
+        self.assertEqual(main.BastShoe('1 ?!'), 'Мастер И Маргарита?!')
+        self.assertEqual(main.BastShoe('2 5'), 'Мастер И Маргар')
+        self.assertEqual(main.BastShoe('4'), 'Мастер И Маргарита?!')
+        self.assertEqual(main.BastShoe('4'), 'Мастер И Маргарита')
+        self.assertEqual(main.BastShoe('5'), 'Мастер И Маргарита?!')
+        self.assertEqual(main.BastShoe('5'), 'Мастер И Маргар')
+        self.assertEqual(main.BastShoe('5'), 'Мастер И Маргар')
+        self.assertEqual(main.BastShoe('2 2'), 'Мастер И Марг')
+        self.assertEqual(main.BastShoe('3 11'), 'р')
+        self.assertEqual(main.BastShoe('1 оман.'), 'роман.')
+        self.assertEqual(main.BastShoe('2 10'), '')
+        self.assertEqual(main.BastShoe('1 классика'), 'классика')
+        self.assertEqual(main.BastShoe('3 15'), '')
 
     def test_case4(self):
-        data = [
-            ['1 Зарядка', 'Зарядка'],
-            ['1  для ума', 'Зарядка для ума'],
-            ['2 4', 'Зарядка для'],
-            ['1  меня', 'Зарядка для меня'],
-            ['4', 'Зарядка для'],
-            ['4', 'Зарядка для ума'],
-            ['3 3', 'я'],
-            ['4', 'Зарядка'],
-            ['7 (некорректная команда)', 'Зарядка'],
-            ['1 !', 'Зарядка!'],
-        ]
+        self.assertEqual(main.BastShoe('1 Зарядка'), 'Зарядка')
+        self.assertEqual(main.BastShoe('1  для ума'), 'Зарядка для ума')
+        self.assertEqual(main.BastShoe('2 4'), 'Зарядка для')
+        self.assertEqual(main.BastShoe('1  меня'), 'Зарядка для меня')
+        self.assertEqual(main.BastShoe('4'), 'Зарядка для')
+        self.assertEqual(main.BastShoe('4'), 'Зарядка для ума')
+        self.assertEqual(main.BastShoe('3 3'), 'я')
+        self.assertEqual(main.BastShoe('4'), 'Зарядка')
+        self.assertEqual(main.BastShoe('7 (некорректная команда)'), 'Зарядка')
+        self.assertEqual(main.BastShoe('1 !'), 'Зарядка!')
 
-        for i in range(len(data)):
-            dataset = data[i]
-            self.assertEqual(main.BastShoe(dataset[0]), dataset[1], msg=f'{i+1} line')
+    def test_case5(self):
+        self.assertEqual(main.BastShoe('1 a'), 'a')
+        self.assertEqual(main.BastShoe('1 b'), 'ab')
+        self.assertEqual(main.BastShoe('1 c'), 'abc')
+        self.assertEqual(main.BastShoe('2 5'), '')
+        self.assertEqual(main.BastShoe('4'), 'abc')
+        self.assertEqual(main.BastShoe('3 0'), 'a')
+        self.assertEqual(main.BastShoe('4'), 'ab')
 
 if __name__ == '__main__':
     unittest.main()
