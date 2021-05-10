@@ -8,8 +8,10 @@ import main
 class BastShoeTest(unittest.TestCase):
 
     def tearDown(self):
-        os.remove(main.history_filename)
-        os.remove(main.pointer_filename)
+        main.history = ['']
+        main.pointer = 0
+        main.undo_state = False
+
 
     def test_case1(self):
         self.assertEqual(main.BastShoe('1 Привет'), 'Привет')

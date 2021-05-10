@@ -4,76 +4,13 @@ COMMAND_GET = '3'
 COMMAND_UNDO = '4'
 COMMAND_REDO = '5'
 
-pointer_filename = 'pointer'
-history_filename = 'history'
+history = ['']
+pointer = 0
+undo_state = False
 
 
-def current_state():
-    pointer = 0
-    undo_state = ''
-
-    try:
-        f = open(pointer_filename, 'r')
-        pointer = int(f.readline().strip('\n'))
-        undo_state = f.readline().strip('\n')
-    except IOError:
-        f = open(pointer_filename, 'w')
-        f.write(str(pointer))
-        f.write(undo_state)
-    finally:
-        f.close()
-
-    return [pointer, undo_state]
-
-
-def save_state(pointer, is_undo=False):
-    f = open(pointer_filename, 'w')
-    f.write(str(pointer) + '\n')
-    if is_undo:
-        f.write('undo\n')
-    else:
-        f.write('')
-    f.close()
-    return pointer
-
-
-def get_string(pointer):
-    cur_str = ''
-
-    try:
-        f = open(history_filename, 'r')
-        cur_str = f.readlines()[pointer].strip('\n')
-    except IOError:
-        f = open(history_filename, 'w')
-        f.write(cur_str)
-        f.write('\n')
-    finally:
-        f.close()
-
-    return cur_str
-
-
-def clear_history():
-    f = open(history_filename, 'w')
-    f.close()
-
-
-def add_string(new_str):
-    f = open(history_filename, 'a')
-    f.write(new_str)
-    f.write('\n')
-    f.close()
-
-
-def edit_string(line, new_str):
-    f = open(history_filename, 'r')
-    lines = f.readlines()
-    f.close()
-
-    lines[line] = new_str + '\n'
-    f = open(history_filename, 'w')
-    f.writelines(lines)
-    f.close()
+def current_string():
+    return history[pointer]
 
 
 def parse_command(command):
@@ -97,37 +34,30 @@ def parse_command(command):
 
 
 def add(part_str):
-    cur_state = current_state()
-    pointer = cur_state[0]
-    undo_state = cur_state[1]
+    global history, pointer, undo_state
 
-    cur_str = get_string(pointer)
+    cur_str = current_string()
 
     if len(part_str):
         new_str = cur_str + part_str
 
         if undo_state:
-            new_pointer = 1
-
-            clear_history()
-            add_string(cur_str)
-            add_string(new_str)
+            history = [cur_str, new_str]
+            pointer = 1
         else:
-            new_pointer = pointer + 1
-            add_string(new_str)
+            history.append(new_str)
+            pointer += 1
 
-        save_state(new_pointer)
-    else:
-        new_str = cur_str
+        undo_state = False
+        cur_str = current_string()
 
-    return new_str
+    return cur_str
 
 
 def delete(n):
-    cur_state = current_state()
-    pointer = cur_state[0]
-    undo_state = cur_state[1]
-    cur_str = get_string(pointer)
+    global history, pointer, undo_state
+
+    cur_str = current_string()
 
     if n > 0 and len(cur_str) > 0:
         new_str_chars = []
@@ -136,65 +66,50 @@ def delete(n):
         new_str = ''.join(new_str_chars)
 
         if undo_state:
-            new_pointer = 1
-
-            clear_history()
-            add_string(cur_str)
-            add_string(new_str)
+            history = [cur_str, new_str]
+            pointer = 1
         else:
-            new_pointer = pointer + 1
-            add_string(new_str)
+            history.append(new_str)
+            pointer += 1
 
-        save_state(new_pointer)
-    else:
-        new_str = cur_str
+        undo_state = False
+        cur_str = current_string()
 
-    return new_str
+    return cur_str
 
 
 def get_char(n):
-    cur_state = current_state()
-    pointer = cur_state[0]
-    cur_str = get_string(pointer)
+    global history, pointer
+
+    cur_str = current_string()
     try:
         pos_char = cur_str[n]
     except Exception:
         pos_char = ''
 
-    edit_string(pointer, pos_char)
-
+    history[pointer] = pos_char
     return pos_char
 
 
 def undo():
-    cur_state = current_state()
-    pointer = cur_state[0]
-    cur_str = get_string(pointer)
+    global history, pointer, undo_state
 
     if pointer > 0:
         pointer -= 1
+        undo_state = True
 
-    save_state(pointer, is_undo=True)
-    new_str = get_string(pointer)
-
-    return new_str
+    cur_str = current_string()
+    return cur_str
 
 
 def redo():
-    cur_state = current_state()
-    pointer = cur_state[0]
-    cur_str = get_string(pointer)
+    global history, pointer, undo_state
 
-    with open(history_filename, 'r') as f:
-        count_lines = len(f.readlines())
-
-    if pointer < count_lines - 1:
+    if pointer < len(history) - 1:
         pointer += 1
 
-    save_state(pointer)
-    new_str = get_string(pointer)
-
-    return new_str
+    cur_str = current_string()
+    return cur_str
 
 
 def BastShoe(command):
@@ -232,7 +147,5 @@ def BastShoe(command):
         new_str = redo()
         return new_str
 
-    cur_state = current_state()
-    pointer = cur_state[0]
-    cur_str = get_string(pointer)
+    cur_str = current_string()
     return cur_str
