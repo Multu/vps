@@ -83,7 +83,11 @@ def get_char(n):
 
     cur_str = current_string()
     try:
-        pos_char = cur_str[n]
+        pos = int(n)
+        if pos >= 0:
+            pos_char = cur_str[pos]
+        else:
+            pos_char = ''
     except Exception:
         pos_char = ''
 
@@ -131,15 +135,8 @@ def BastShoe(command):
         return new_str
 
     if n == COMMAND_GET:
-        cur_str = current_string()
-        try:
-            pos = int(param)
-            if pos >= 0:
-                cur_str = get_char(pos)
-        except Exception:
-            pass
-
-        return cur_str
+        pos_char = get_char(param)
+        return pos_char
 
     if n == COMMAND_UNDO:
         new_str = undo()
