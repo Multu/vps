@@ -95,6 +95,10 @@ class BastShoeTest(unittest.TestCase):
         self.assertEqual(main.BastShoe('4'), 'abc')
         self.assertEqual(main.BastShoe('3 0'), 'a')
         self.assertEqual(main.BastShoe('4'), 'ab')
+        self.assertEqual(main.BastShoe('3 -1'), 'ab')
+        self.assertEqual(main.BastShoe('3 (некорректный параметр)'), 'ab')
+        self.assertEqual(main.BastShoe('3 0'), 'a')
+        self.assertEqual(main.BastShoe('3 20'), '')
 
 if __name__ == '__main__':
     unittest.main()

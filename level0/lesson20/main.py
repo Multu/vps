@@ -131,13 +131,15 @@ def BastShoe(command):
         return new_str
 
     if n == COMMAND_GET:
+        cur_str = current_string()
         try:
             pos = int(param)
-            pos_char = get_char(pos)
+            if pos >= 0:
+                cur_str = get_char(pos)
         except Exception:
-            pos_char = ''
+            pass
 
-        return pos_char
+        return cur_str
 
     if n == COMMAND_UNDO:
         new_str = undo()
