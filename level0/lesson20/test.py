@@ -110,6 +110,7 @@ class BastShoeTest(unittest.TestCase):
         self.assertEqual(main.BastShoe('3 ааа'), '')
         self.assertEqual(main.BastShoe('1 ааа'), 'ааа')
         self.assertEqual(main.BastShoe('10 ааа'), 'ааа')
+        self.assertEqual(main.BastShoe('3 -1'), '')
 
 if __name__ == '__main__':
     unittest.main()
