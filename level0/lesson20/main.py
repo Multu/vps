@@ -82,16 +82,12 @@ def get_char(n):
     global history, pointer
 
     cur_str = current_string()
+
     try:
-        pos = int(n)
-        if pos >= 0:
-            pos_char = cur_str[pos]
-        else:
-            pos_char = ''
+        pos_char = cur_str[n]
     except Exception:
         pos_char = ''
 
-    history[pointer] = pos_char
     return pos_char
 
 
@@ -135,7 +131,15 @@ def BastShoe(command):
         return new_str
 
     if n == COMMAND_GET:
-        pos_char = get_char(param)
+        try:
+            pos = int(param)
+            if pos >= 0:
+                pos_char = get_char(pos)
+            else:
+                pos_char = ''
+        except Exception:
+            pos_char = ''
+
         return pos_char
 
     if n == COMMAND_UNDO:

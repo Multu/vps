@@ -53,10 +53,10 @@ class BastShoeTest(unittest.TestCase):
         self.assertEqual(main.BastShoe('4'), 'Зарядка для')
         self.assertEqual(main.BastShoe('4'), 'Зарядка для ума')
         self.assertEqual(main.BastShoe('3 3'), 'я')
-        self.assertEqual(main.BastShoe('1  молодец'), 'я молодец')
-        self.assertEqual(main.BastShoe('2 8'), 'я')
-        self.assertEqual(main.BastShoe('5'), 'я')
-        self.assertEqual(main.BastShoe('4'), 'я молодец')
+        self.assertEqual(main.BastShoe('1  молодец'), 'Зарядка для ума молодец')
+        self.assertEqual(main.BastShoe('2 8'), 'Зарядка для ума')
+        self.assertEqual(main.BastShoe('5'), 'Зарядка для ума')
+        self.assertEqual(main.BastShoe('4'), 'Зарядка для ума молодец')
 
     def test_case3(self):
         self.assertEqual(main.BastShoe('1 Мастер'), 'Мастер')
@@ -70,8 +70,8 @@ class BastShoeTest(unittest.TestCase):
         self.assertEqual(main.BastShoe('5'), 'Мастер И Маргар')
         self.assertEqual(main.BastShoe('2 2'), 'Мастер И Марг')
         self.assertEqual(main.BastShoe('3 11'), 'р')
-        self.assertEqual(main.BastShoe('1 оман.'), 'роман.')
-        self.assertEqual(main.BastShoe('2 10'), '')
+        self.assertEqual(main.BastShoe('1 оман.'), 'Мастер И Маргоман.')
+        self.assertEqual(main.BastShoe('2 30'), '')
         self.assertEqual(main.BastShoe('1 классика'), 'классика')
         self.assertEqual(main.BastShoe('3 15'), '')
 
@@ -97,20 +97,30 @@ class BastShoeTest(unittest.TestCase):
         self.assertEqual(main.BastShoe('4'), 'ab')
         self.assertEqual(main.BastShoe('3 -1'), '')
         self.assertEqual(main.BastShoe('3 (некорректный параметр)'), '')
-        self.assertEqual(main.BastShoe('1 один'), 'один')
-        self.assertEqual(main.BastShoe('3 0'), 'о')
+        self.assertEqual(main.BastShoe('1 один'), 'abодин')
+        self.assertEqual(main.BastShoe('3 0'), 'a')
         self.assertEqual(main.BastShoe('3 20'), '')
 
     def test_case6(self):
         self.assertEqual(main.BastShoe('3 10'), '')
         self.assertEqual(main.BastShoe('1 привет'), 'привет')
         self.assertEqual(main.BastShoe('3 5'), 'т')
-        self.assertEqual(main.BastShoe('3 1'), '')
-        self.assertEqual(main.BastShoe('1 два'), 'два')
+        self.assertEqual(main.BastShoe('3 1'), 'р')
+        self.assertEqual(main.BastShoe('1 два'), 'приветдва')
         self.assertEqual(main.BastShoe('3 ааа'), '')
-        self.assertEqual(main.BastShoe('1 ааа'), 'ааа')
-        self.assertEqual(main.BastShoe('10 ааа'), 'ааа')
-        self.assertEqual(main.BastShoe('3 -1'), '')
+        self.assertEqual(main.BastShoe('1 ааа'), 'приветдваааа')
+        self.assertEqual(main.BastShoe('10 ааа'), 'приветдваааа')
+        self.assertEqual(main.BastShoe('3 '), '')
+
+    def test_case7(self):
+        self.assertEqual(main.BastShoe('1 a'), 'a')
+        self.assertEqual(main.BastShoe('1 b'), 'ab')
+        self.assertEqual(main.BastShoe('1 c'), 'abc')
+        self.assertEqual(main.BastShoe('1 d'), 'abcd')
+        self.assertEqual(main.BastShoe('1 e'), 'abcde')
+        self.assertEqual(main.BastShoe('3 0'), 'a')
+        self.assertEqual(main.BastShoe('3 4'), 'e')
+
 
 if __name__ == '__main__':
     unittest.main()
