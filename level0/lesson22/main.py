@@ -10,76 +10,60 @@ def is_equal_elements(input_list):
     return True
 
 
-def group
+def group_by_unique_element(source):
+    """Create list with pairs of [element => count of its meeting] in `source`."""
+    input_list = list(source)
+
+    grouped_list = []
+    for i in range(len(input_list)):
+        elem = input_list[i]
+        for j in range(len(grouped_list)):
+            if grouped_list[j][0] == elem:
+                grouped_list[j][1] += 1
+                break
+        else:
+            grouped_list.append([elem, 1])
+
+    return grouped_list
+
 
 def SherlockValidString(input_str):
     if len(input_str) < 2:
         return False
 
-    # Create list with pairs of [char => count of its meeting] in string.
-    chars_dict = []
-    for i in range(len(input_str)):
-        char = input_str[i]
-        for j in range(len(chars_dict)):
-            if chars_dict[j][0] == char:
-                chars_dict[j][1] += 1
-                break
-        else:
-            chars_dict.append([char, 1])
+    chars_grouped = group_by_unique_element(input_str)
+    chars_count = []
+    for i in range(len(chars_grouped)):
+        chars_count.append(chars_grouped[i][1])
 
-    # List with only count of each char appears in string
-    chars_meeting_count = []
-    for i in range(len(chars_dict)):
-        chars_meeting_count.append(chars_dict[i][1])
-
-    print(chars_meeting_count)
-
-    # Fill list with pairs of count of same chars -> count of it this combinations.
-    combination_dict = []
-    for i in range(len(chars_meeting_count)):
-        count_chars = chars_meeting_count[i]
-        for j in range(len(combination_dict)):
-            if combination_dict[j][0] == count_chars:
-                combination_dict[j][1] += 1
-                break
-        else:
-            combination_dict.append([count_chars, 1])
-
-    combination_meeting = []
-    for i in range(len(combination_dict)):
-        combination_meeting.append(combination_dict[i][0])
-
-    print(chars_meeting_count)
-    print(combination_dict)
-    print(combination_meeting)
+    combinations_grouped = group_by_unique_element(chars_count)
+    combinations_length = []
+    for i in range(len(combinations_grouped)):
+        combinations_length.append(combinations_grouped[i][0])
 
     # If occurs only one combination, then input string is valid.
-    #
     # If occurs two combination, then possible to get a valid string.
-    #
     # If occurs more than two combinations, then impossible to get
     # valid string with one attempt to delete a character.
-    if len(combination_dict) == 1:
+    if len(combinations_grouped) == 1:
         is_valid_str = True
-    elif len(combination_dict) == 2:
+    elif len(combinations_grouped) == 2:
         is_valid_str = False
-        for i in range(len(combination_dict)):
-            if combination_dict[i][1] == 1:
-                combination_meeting_copy = list(combination_meeting)
-                combination_meeting_copy[i] -= 1
-                if combination_meeting_copy[i] == 0:
-                    combination_meeting_copy.pop(i)
 
-                is_equal_copy = is_equal_elements(combination_meeting_copy)
-                if is_equal_copy:
+        for i in range(len(combinations_grouped)):
+            combination = combinations_grouped[i]
+            if combination[1] == 1:
+                if combination[0] == 1:
                     is_valid_str = True
                     break
+                else:
+                    comb_length_copy = list(combinations_length)
+                    comb_length_copy[i] -= 1
+
+                    if is_equal_elements(comb_length_copy):
+                        is_valid_str = True
+                        break
     else:
         is_valid_str = False
 
-    print(is_valid_str)
-
     return is_valid_str
-
-
-SherlockValidString('xyzaa')
