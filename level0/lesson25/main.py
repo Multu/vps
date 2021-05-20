@@ -1,7 +1,7 @@
 def max_value_in_range(value_list, from_pos, to_pos):
     max_value = value_list[from_pos]
 
-    for i in range(to_pos + 1):
+    for i in range(from_pos, to_pos + 1):
         if value_list[i] > max_value:
             max_value = value_list[i]
 
