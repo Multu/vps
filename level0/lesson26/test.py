@@ -15,10 +15,14 @@ class BalancedParenthesesTest(unittest.TestCase):
         self.assertEqual(output.sort(), '()() (())'.split(' ').sort())
 
         output = main.BalancedParentheses(3).split(' ')
-        self.assertEqual(output.sort(), '((())) ()(()) (())() ()()()'.split(' ').sort())
+        self.assertEqual(output.sort(), '((())) ()(()) (())() ()()() (()())'.split(' ').sort())
 
         output = main.BalancedParentheses(4).split(' ')
-        self.assertEqual(output.sort(), '(((()))) ((()))() (())(()) (())()() ()((())) ()(())() ()()(()) ()()()()'.split(' ').sort())
+        self.assertEqual(output.sort(), '(((()))) ((()))() ()((())) ()()(()) ()(())() (())()() ()()()() (())(()) ((())()) (()(())) (()()()) ((()()))'.split(' ').sort())
+
+        output = main.BalancedParentheses(5).split(' ')
+        self.assertEqual(output.sort(), '((((())))) ()(((()))) (((())))() (())((())) ((()))(()) (())(())() (())()(()) ()(())(()) ()()((())) ()((()))() ((()))()() ()()()(()) ()()(())() ()(())()() (())()()() ()()()()() (((()))()) (()((()))) ((())(())) ((())()()) (()(())()) (()()(())) (()()()()) (((()())) ((()(()))) ((()()())) (((()())))'.split(' ').sort())
+
 
 if __name__ == '__main__':
     unittest.main()

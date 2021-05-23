@@ -12,6 +12,8 @@ def generate_terms(total_sum, combinations):
     stop_combination = [1] * total_sum
 
     if combinations[-1] == stop_combination:
+        if len(combinations) > 1:
+            combinations.pop(0)
         return list(combinations)
     else:
         previous_combination = combinations[-1]
@@ -31,10 +33,9 @@ def generate_terms(total_sum, combinations):
         return generate_terms(total_sum, combinations)
 
 
-def BalancedParentheses(n):
-    terms = generate_terms(n, [])
-
+def generate_brackets(terms):
     brackets = []
+
     for i in range(len(terms)):
         brackets_item = []
 
@@ -45,5 +46,19 @@ def BalancedParentheses(n):
             for k in range(term[j]):
                 brackets_item.append(')')
         brackets.append(''.join(brackets_item))
+
+    return brackets
+
+
+def BalancedParentheses(n):
+    brackets = []
+
+    for i in range(n, 0, -1):
+        terms = generate_terms(i, [])
+        terms_brackets = generate_brackets(terms)
+        for j in range(len(terms_brackets)):
+            outer_brackets = n - i
+            bracket = '(' * outer_brackets + terms_brackets[j] + ')' * outer_brackets
+            brackets.append(bracket)
 
     return ' '.join(brackets)
