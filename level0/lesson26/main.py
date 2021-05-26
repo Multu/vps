@@ -12,8 +12,6 @@ def generate_terms(total_sum, combinations):
     stop_combination = [1] * total_sum
 
     if combinations[-1] == stop_combination:
-        #if len(combinations) > 1:
-        #    combinations.pop(0)
         return list(combinations)
     else:
         previous_combination = combinations[-1]
@@ -33,37 +31,6 @@ def generate_terms(total_sum, combinations):
         return generate_terms(total_sum, combinations)
 
 
-def generate_brackets(terms):
-    print(terms)
-    brackets = []
-
-    for i in range(len(terms)):
-        brackets_item = []
-
-        term = terms[i]
-        for j in range(len(term)):
-            for k in range(term[j]):
-                brackets_item.append('(')
-            for k in range(term[j]):
-                brackets_item.append(')')
-        brackets.append(''.join(brackets_item))
-
-    return brackets
-
-
-def list_to_brackets(term):
-    brackets = []
-
-    for i in range(len(term)):
-        brackets_item = []
-        for k in range(term[i]):
-            brackets_item.append('(')
-        for k in range(term[i]):
-            brackets_item.append(')')
-    brackets.append(''.join(brackets_item))
-    return brackets
-
-
 def digit_to_brackets(digit):
     brackets = []
 
@@ -75,73 +42,61 @@ def digit_to_brackets(digit):
     return ''.join(brackets)
 
 
-def all_brackets_combination(n, brackets, outer_br):
-
-    for i in range(n, 0, -1):
-        terms = generate_terms(i, [])
-        terms_brackets = generate_brackets(terms)
-        for j in range(len(terms_brackets)):
-            outer_brackets = n - i
-            bracket = '(' * outer_brackets + terms_brackets[j] + ')' * outer_brackets
-            brackets.append(bracket)
-
-    return brackets
-
-def BalancedParentheses(n):
-    brackets = all_brackets_combination(n, [], 0)
-    return ' '.join(brackets)
-
-
-n = 3
-
-def test(n, combinations, outer):
-    print('def call', n, combinations)
-
-    terms = generate_terms(n, [])
-
-
-    if n == 1:
-        return [1]
-    else:
-
-        terms = generate_terms(n, [])
-        for i in range(len(terms)):
-            term = terms[i]
-            for j in range(len(term)):
-                if term[j] > 1:
-                    term[j] = test(term[j] - 1, combinations)
-
-    return combinations
-
-def test2(n):
-    combination = []
+def all_combinations(n):
+    combinations = []
     terms = generate_terms(n, [])
     for i in range(len(terms)):
         term = terms[i]
-        combination.append(term)
-        brackets_combinations = list_to_brackets(term)
-        #combination.append(brackets_combinations)
+        combinations.append(term)
         for j in range(len(term)):
             if term[j] > 1:
+                inner_combinations = all_combinations(term[j] - 1)
+                for k in range(len(inner_combinations)):
+                    inner_term = list(term)
+                    inner_term[j] = inner_combinations[k]
+                    combinations.append(inner_term)
 
-                start_line = ''
-                for m in range(0, j):
-                    start_line += digit_to_brackets(term[m])
-
-                end_line = ''
-                for m in range(j, len(term)):
-                    end_line += digit_to_brackets(term[m])
-
-                comb_rec = test2(term[j] - 1)
-                for k in range(len(comb_rec)):
-                    term2 = list(term)
-                    term2[j] = comb_rec[k]
-                   # print(comb_rec[k])
-                    combination.append(term2)
-                    #combination.append(start_line + '(' + list_to_brackets(comb_rec[k][0]) + ')' + end_line)
+    return combinations
 
 
-    return combination
+def combinations_to_brackets(combinations_list):
+    brackets_list = []
 
-res = test2(5)
-print(res, len(res))
+    for i in range(len(combinations_list)):
+        combination = combinations_list[i]
+        brackets_line = ''
+
+        for j in range(len(combination)):
+            combination_element = combination[j]
+            if isinstance(combination_element, int):
+                brackets_line += digit_to_brackets(combination_element)
+            else:
+                inner_combinations = combinations_to_brackets([combination_element])
+                if len(inner_combinations):
+                    brackets_line += '('
+                    for k in range(len(inner_combinations)):
+                        brackets_line += inner_combinations[k]
+                    brackets_line += ')'
+
+        brackets_list.append(brackets_line)
+
+    return brackets_list
+
+
+def unique_list(source_list):
+    unique_elements = []
+    for i in range(len(source_list)):
+        for j in range(len(unique_elements)):
+            if source_list[i] == unique_elements[j]:
+                break
+        else:
+            unique_elements.append(source_list[i])
+
+    return unique_elements
+
+
+def BalancedParentheses(n):
+    combinations = all_combinations(n)
+    brackets = combinations_to_brackets(combinations)
+    unique_brackets = unique_list(brackets)
+    return ' '.join(unique_brackets)
