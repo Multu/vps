@@ -13,7 +13,7 @@ def Football(f, n):
 
     # Input list was already sorted.
     if diff_positions_count == 0:
-        return True
+        return False
     # Swap two random elements
     elif diff_positions_count == 2:
         return True
