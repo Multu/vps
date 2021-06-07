@@ -5,6 +5,8 @@ import task1
 import task2
 import task3
 import task4
+import task5
+import task6
 
 
 class RecursionTest(unittest.TestCase):
@@ -38,6 +40,19 @@ class RecursionTest(unittest.TestCase):
         self.assertEqual(task4.is_palindrome('кизик'), True)
         self.assertEqual(task4.is_palindrome('not palindrome'), False)
 
+    def test_even_values(self):
+        self.assertEqual(task5.even_values([]), [])
+        self.assertEqual(task5.even_values([1, 3, 5, 7]), [])
+        self.assertEqual(task5.even_values([2, 4, 6, 8, 12]), [2, 4, 6, 8, 12])
+        self.assertEqual(task5.even_values([1, 4, 6, 9, 10]), [4, 6, 10])
+        self.assertEqual(task5.even_values([0, 4, 4, 4, 7]), [0, 4, 4, 4])
+
+    def test_even_index_values(self):
+        self.assertEqual(task6.even_index_values([]), [])
+        self.assertEqual(task6.even_index_values([1]), [1])
+        self.assertEqual(task6.even_index_values([1, 2]), [1])
+        self.assertEqual(task6.even_index_values([1, 2, 3, 4, 5, 6, 7]), [1, 3, 5, 7])
+        self.assertEqual(task6.even_index_values([1, 2, 3, 4, 5, 6, 7, 10]), [1, 3, 5, 7])
 
 if __name__ == '__main__':
     unittest.main()
