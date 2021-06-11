@@ -9,11 +9,14 @@ def unique(source):
     return unique_list
 
 
-def sort_desc(source):
-    for i in range(len(source) - 1):
-        for j in range(i + 1, len(source)):
-            if source[j] > source[i]:
-                source[i], source[j] = source[j], source[i]
+def pop_min_value(source):
+    min_value_index = 0
+
+    for i in range(1, len(source)):
+        if source[i] < source[min_value_index]:
+            min_value_index = i
+
+    return source.pop(min_value_index)
 
 
 def second_maximum(source):
@@ -24,14 +27,13 @@ def second_maximum(source):
         # First element of `unique_head` store max value, next one - second max value.
         # The values must be different.
         unique_head = unique(head)
-        sort_desc(unique_head)
         if len(unique_head) > 2:
-            unique_head = unique_head[:2]
+            _ = pop_min_value(unique_head)
 
         return second_maximum(unique_head + tail)
 
     elif len(source) == 2:
         unique_source = unique(source)
-        sort_desc(unique_source)
         if len(unique_source) == 2:
-            return unique_source[1]
+            min_value = pop_min_value(unique_source)
+            return min_value
