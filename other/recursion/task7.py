@@ -26,7 +26,5 @@ def second_maximum(source):
     elif len(source) == 2:
         unique_source = unique(source)
         unique_source.sort(reverse=True)
-        try:
+        if len(unique_source) == 2:
             return unique_source[1]
-        except Exception:
-            pass
