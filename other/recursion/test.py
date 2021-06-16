@@ -58,12 +58,14 @@ class RecursionTest(unittest.TestCase):
     def test_second_maximum(self):
         self.assertEqual(task7.second_biggest([]), None)
         self.assertEqual(task7.second_biggest([22]), None)
-        self.assertEqual(task7.second_biggest([7, 7]), None)
-        self.assertEqual(task7.second_biggest([5, 5, 5]), None)
+        self.assertEqual(task7.second_biggest([7, 7]), 7)
+        self.assertEqual(task7.second_biggest([5, 5, 5]), 5)
         self.assertEqual(task7.second_biggest([5, 2]), 2)
         self.assertEqual(task7.second_biggest([2, 5]), 2)
         self.assertEqual(task7.second_biggest([4, 6, 8, 14]), 8)
-        self.assertEqual(task7.second_biggest([11, 5, 3, 10, 4, 11, 6, 3, 2]), 10)
+        self.assertEqual(task7.second_biggest([11, 5, 3, 10, 4, 6, 3, 2]), 10)
+        self.assertEqual(task7.second_biggest([11, 5, 3, 10, 11, 6, 3, 2]), 11)
+        self.assertEqual(task7.second_biggest([11, 11, 3, 10, 4, 11, 6, 3, 2]), 11)
 
 
 

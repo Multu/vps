@@ -47,7 +47,7 @@ def recursion(source, first_max, second_max):
 
     if current > first_max:
         return recursion(tail, current, first_max)
-    elif current > second_max and current != first_max:
+    elif current > second_max:
         return recursion(tail, first_max, current)
     else:
         return recursion(tail, first_max, second_max)
@@ -59,11 +59,7 @@ def second_biggest(source):
 
     first, second, tail = source[0], source[1], source[2:]
 
-    # First and second elements must be different.
-    while first == second and len(tail):
-        second = tail.pop(0)
-
     if first > second:
         return recursion(tail, first, second)
-    elif first < second:
-        return recursion(tail, second, first)
+
+    return recursion(tail, second, first)
