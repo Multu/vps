@@ -37,3 +37,33 @@ def second_maximum(source):
         if len(unique_source) == 2:
             min_value = pop_min_value(unique_source)
             return min_value
+
+
+def recursion(source, first_max, second_max):
+    if len(source) == 0:
+        return second_max
+
+    current, tail = source[0], source[1:]
+
+    if current > first_max:
+        return recursion(tail, current, first_max)
+    elif current > second_max and current != first_max:
+        return recursion(tail, first_max, current)
+    else:
+        return recursion(tail, first_max, second_max)
+
+
+def second_biggest(source):
+    if len(source) < 2:
+        return None
+
+    first, second, tail = source[0], source[1], source[2:]
+
+    # First and second elements must be different.
+    while first == second and len(tail):
+        second = tail.pop(0)
+
+    if first > second:
+        return recursion(tail, first, second)
+    elif first < second:
+        return recursion(tail, second, first)
