@@ -1,14 +1,13 @@
-def generate_brackets(max_count, open_count=0, close_count=0, cur_brackets=''):
-    combinations = []
-
+def generate_brackets(max_count, open_count=0, close_count=0, cur_brackets='', combinations=[]):
     if max_count == len(cur_brackets):
-        return cur_brackets
+        combinations.append(cur_brackets)
+        return
 
     if open_count < max_count / 2:
-        combinations += generate_brackets(max_count, open_count + 1, close_count, cur_brackets + '(')
+        generate_brackets(max_count, open_count + 1, close_count, cur_brackets + '(', combinations)
 
     if open_count > close_count:
-        combinations += generate_brackets(max_count, open_count, close_count + 1, cur_brackets + ')')
+        generate_brackets(max_count, open_count, close_count + 1, cur_brackets + ')', combinations)
 
     return combinations
 
