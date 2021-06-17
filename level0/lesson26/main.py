@@ -1,20 +1,18 @@
-def generate_brackets(max_count, open_count, close_count, cur_list, combinations):
-    if max_count == len(cur_list):
-        combinations.append(''.join(cur_list))
-        return
+def generate_brackets(max_count, open_count=0, close_count=0, cur_brackets=''):
+    combinations = []
+
+    if max_count == len(cur_brackets):
+        return cur_brackets
 
     if open_count < max_count / 2:
-        cur_copy = list(cur_list)
-        cur_copy.append('(')
-        generate_brackets(max_count, open_count + 1, close_count, cur_copy, combinations)
+        combinations += generate_brackets(max_count, open_count + 1, close_count, cur_brackets + '(')
 
     if open_count > close_count:
-        cur_copy = list(cur_list)
-        cur_copy.append(')')
-        generate_brackets(max_count, open_count, close_count + 1, cur_copy, combinations)
+        combinations += generate_brackets(max_count, open_count, close_count + 1, cur_brackets + ')')
 
     return combinations
 
+
 def BalancedParentheses(n):
-    combinations = generate_brackets(n * 2, 0, 0, [], [])
+    combinations = generate_brackets(n * 2)
     return ' '.join(combinations)
