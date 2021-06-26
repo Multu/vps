@@ -1,0 +1,36 @@
+min_index - min_value_index
+# индекс минимального элемента в списке
+
+s1 - str_minuend
+s2 - str_subtrahend
+# уменьшаемое и вычитаемое для вычисления разности, в формате строки
+
+asc_number - number_of_smaller_items
+# количество элементов в списке, значения которых меньше указанного
+
+line_length - polyline_length
+# длина ломаной линии
+
+no_space - str_without_spaces
+# строка после удаления из нее всех пробелов
+
+f_sort - asc_sorted_list
+# упорядоченный по возрастанию список
+
+diff_positions - keys_of_unequal_items
+# индексы неравных элементов при сравнении двух списков между собой
+
+digital_tree - binary_tree
+# список, который в зависимости от условий может состоять только из 0 или 1
+
+chars_grouped - chars_count
+# количество вхождений каждого из символа в строке
+
+max_discount - max_total_discount
+# максимальный возможный размер общей (суммарной) скидки
+
+toner_sum - total_toner_consumption
+# общий расход тонера в принтере
+
+char_weigth - symbol_toner_consumption
+# расход тонера на печать одного символа
