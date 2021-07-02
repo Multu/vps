@@ -1,0 +1,58 @@
+Задание 6.1
+
+matrix - encode_matrix
+# матрица для шифрования строки
+
+rows - encode_matrix_height
+cols - encode_matrix_width
+# размеры матрицы для применения алгоримта шифрования
+
+long1 - number_of_digits_in_num1
+long2 - number_of_digits_in_num2
+# количество цифр в числах
+
+total_time - total_time_in_road
+# общее время, затраченное на дорогу
+
+max_price - max_product_price
+# максимальная стоимость товара
+
+
+Задание 6.2
+
+salary_bubble_sorted
+// список зарплат, отсортированный методом пузырька
+
+auth_request
+// запрос на авторизацию
+
+new_order_notification
+// уведомление о новом заказе
+
+send_email_job
+// задание для отправки письма
+
+
+Задание 6.3
+
+Атрибуты класса Order: product_title, amount, product_price, total_price
+Атрибуты класса Rectangle: x1, y1, x2, y2
+Атрибуты класса Cat: color, name, weight
+
+
+Задание 6.4
+
+days - day_of_capture
+// день, на который вся территория будет захвачена
+
+code - unlock_code
+// код разблокировки экрана
+
+amount_for_percent_tax_fee - tax_fee_base
+// сумма, от которой будет рассчитываться налог
+
+payments_in_cassette_status - bill_accepted_status
+// список статусов, при которых купюра находится внутри кассеты купюроприемника
+
+ip - allowed_ip
+// ip адрес, с которого разрешен запрос
