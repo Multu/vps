@@ -1,0 +1,64 @@
+Задание 7.1
+
+encode - is_encode
+octal - is_octal
+delimiter_appeared - is_delimiter_appeared
+undo_state - is_undo
+is_valid_str
+is_even
+
+
+Задание 7.2
+
+// было
+while input_data[i] != target_value:
+    pass
+
+// стало
+found = input_data[i] == target_value
+while not found:
+    pass
+
+
+// было
+threshold_pos = -1
+for i in range(len(output_chars) - 1, 0, -1):
+    for j in range(i - 1, -1, -1):
+        if output_chars[i] > output_chars[j]:
+            threshold_pos = j
+            break
+    if threshold_pos >= 0:
+        break
+
+// стало
+done = False
+for i in range(len(output_chars) - 1, 0, -1):
+    for j in range(i - 1, -1, -1):
+        if output_chars[i] > output_chars[j]:
+            done = True
+            break
+    if done:
+        break
+
+
+Задание 7.3
+
+
+
+
+Задание 6.4
+
+days - day_of_capture
+// день, на который вся территория будет захвачена
+
+code - unlock_code
+// код разблокировки экрана
+
+amount_for_percent_tax_fee - tax_fee_base
+// сумма, от которой будет рассчитываться налог
+
+payments_in_cassette_status - bill_accepted_status
+// список статусов, при которых купюра находится внутри кассеты купюроприемника
+
+ip - allowed_ip
+// ip адрес, с которого разрешен запрос
