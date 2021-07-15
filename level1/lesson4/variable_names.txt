@@ -1,0 +1,35 @@
+salary - staff_salaries
+# список зарпплат сотрудников
+
+sum_res - financial_balance
+# итог бухгалтерской сводки
+
+no_space_list - no_space_chars
+# набор символов, из которого исключены все пробелы
+
+sub_str = subtraction_result
+# результат вычитания двух чисел
+
+total_votes - votes_sum
+# общее количество голосов
+
+vote_result - election_result
+# результат голосования на выборах
+
+base - decimal_base
+# система счисления
+
+decimal_value - decimal
+# результат конвертации из одной системы счисления в другую
+
+time_red - lights_green_time
+# время горения зеленого цвета светофора
+
+max_discount - maximum_discount
+# максимальный размер скидки
+
+cur_str - current_editor_line
+# текущая строка в редакторе
+
+pointer - line_num
+# номер текущей строки в редакторе
