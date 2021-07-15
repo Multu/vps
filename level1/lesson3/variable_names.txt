@@ -43,22 +43,42 @@ for i in range(len(output_chars) - 1, 0, -1):
 
 Задание 7.3
 
+// индексы цикла используются далее по коду в вычислениях
+for row in range(H):
+    for col in range(W):
+        if new_tree[row][col] >= 3:
+            prev_row = row - 1
+            if 0 <= prev_row <= H - 1 and new_tree[prev_row][col] < 3:
+                new_tree[prev_row][col] = 0
 
 
+Задание 7.4
 
-Задание 6.4
+low_threshold - high_threshold
+encoded_str - decoded_str
+shortest_len - longest_len
 
-days - day_of_capture
-// день, на который вся территория будет захвачена
 
-code - unlock_code
-// код разблокировки экрана
+Задание 7.5
 
-amount_for_percent_tax_fee - tax_fee_base
-// сумма, от которой будет рассчитываться налог
+// было
+for i in range(len(a)):
+    for j in range(len(a) - i):
+        k = i + j
+        max_value = max_value_in_range(a, j, k)
+        b.append(max_value)
 
-payments_in_cassette_status - bill_accepted_status
-// список статусов, при которых купюра находится внутри кассеты купюроприемника
+// стало, избавился от переменной k
+for i in range(len(a)):
+    for j in range(len(a) - i):
+        max_value = max_value_in_range(a, j, i + j)
+        b.append(max_value)
 
-ip - allowed_ip
-// ip адрес, с которого разрешен запрос
+
+// было
+m = len(matrix)
+t = t % m
+
+// стало
+matrix_len = len(matrix)
+relative_shift = absolute_shift % matrix_len
