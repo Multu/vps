@@ -19,7 +19,7 @@ vote_result - election_result
 base - decimal_base
 # система счисления
 
-decimal_value - decimal
+decimal_value - converted_number
 # результат конвертации из одной системы счисления в другую
 
 time_red - lights_green_time
