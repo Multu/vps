@@ -1,0 +1,45 @@
+Задание 3.1
+
+class ImageManipulate - class ImageResizer
+class TextToSpeech - class SpeechSynthesis
+class ConfirmBid - class BidConfirmation
+class RepeatSales - class Upselling
+class ImportImages - class ImageImporter
+
+
+Задание 3.2
+
+// было
+sms_gateway, quickblox_gateway, api_freshdoc, api_mail
+// стало
+sms_gateway, quickblox_gateway, freshdoc_gateway, mail_gateway
+
+// было
+def standard_contract, def documents_standard_contract
+// стало
+def get_standard_contracts
+
+// было
+def store, def save
+// стало
+def save
+
+// было
+def create, def add
+// стало
+def add
+
+// было
+token, secret, authorization_secret
+// стало
+secret_key
+
+// было
+def load, def show
+// стало
+def get
+
+// было
+def download, def download_pdf
+// стало
+def download_file
