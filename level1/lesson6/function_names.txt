@@ -1,0 +1,36 @@
+max_value_in_range - find_max_value_from_range
+// возвращает максимальный элемент списка среди указанного диапазона индексов
+
+is_equal_elements - is_all_chars_equal
+// проверка, являются ли все символы строки равными между собой
+
+split_sale - split_order_line_into_product_and_quantity
+// разделить запись о продаже на две части: название товара и его количество
+
+new_conquer_day - generate_next_day_conquest_area
+// геренирование площадки для следующего игрового дня
+
+first_digit - get_numbers_first_digit
+// получить первую цифру числа
+
+split_to_words - get_words_from_text
+// получить все слова текста
+
+encrypt - get_encrypted_value
+// вернуть зашифрованное значение
+
+char_weight - get_toner_consumption_per_char
+// получить расход тонера для печати конкретного символа
+
+fill_matrix - transform_to_matrix
+// преобразовать входные параметры в матрицу указанной размерности
+
+delete - delete_last_chars
+// удалить из строки последние символы
+
+border_coords_list - get_contour_coords
+// получить координаты контура прямоугольника
+
+calculate_deposit - get_maximum_allowable_deposit
+// вычислить максимально возможное значение для депозита
+
