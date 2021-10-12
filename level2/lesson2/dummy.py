@@ -4,14 +4,12 @@ class Node:
         self.value = v
         self.next = None
         self.prev = None
-        self.is_custom = True
 
 
 class DummyNode(Node):
 
     def __init__(self):
         super().__init__(None)
-        self.is_custom = False
 
 
 class DummyLinkedList2:
@@ -39,7 +37,7 @@ class DummyLinkedList2:
 
     def find(self, val):
         node = self.head.next
-        while node.is_custom:
+        while not isinstance(node, DummyNode):
             if node.value == val:
                 return node
             node = node.next
@@ -49,7 +47,7 @@ class DummyLinkedList2:
         found_nodes = []
 
         node = self.head.next
-        while node.is_custom:
+        while not isinstance(node, DummyNode):
             if node.value == val:
                 found_nodes.append(node)
             node = node.next
@@ -58,7 +56,7 @@ class DummyLinkedList2:
 
     def delete(self, val, all=False):
         node = self.head.next
-        while node.is_custom:
+        while not isinstance(node, DummyNode):
             if node.value == val:
                 node.prev.next = node.next
                 node.next.prev = node.prev
@@ -75,7 +73,7 @@ class DummyLinkedList2:
     def len(self):
         list_len = 0
         node = self.head.next
-        while node.is_custom:
+        while not isinstance(node, DummyNode):
             list_len += 1
             node = node.next
         return list_len
@@ -85,7 +83,7 @@ class DummyLinkedList2:
             self.add_in_tail(newNode)
 
         node = self.head.next
-        while node.is_custom:
+        while not isinstance(node, DummyNode):
             if node is afterNode:
                 newNode.prev = node
                 newNode.next = node.next
