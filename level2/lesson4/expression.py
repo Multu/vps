@@ -41,4 +41,5 @@ def evaluate_expression(expression):
 
         raise RuntimeError('Incorrect order of operator or operand')
 
-    return None
+    if compute_stack.size():
+        raise RuntimeError('Not enough operators or operands')

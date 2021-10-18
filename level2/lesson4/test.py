@@ -94,7 +94,6 @@ class Expression(unittest.TestCase):
     def test_is_brackets_in_balance(self):
         self.assertEqual(expression.evaluate_expression('8 2 + 5 * 9 + ='), 59)
         self.assertEqual(expression.evaluate_expression('1 2 + 3 * ='), 9)
-        self.assertEqual(expression.evaluate_expression('10 3'), None)
 
         with self.assertRaises(RuntimeError):
             expression.evaluate_expression('8 2 10 + 5 * 9 + =')
@@ -102,13 +101,14 @@ class Expression(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             expression.evaluate_expression('9 = 2')
 
+        with self.assertRaises(RuntimeError):
+            expression.evaluate_expression('10 3')
+
         with self.assertRaises(ValueError):
             expression.evaluate_expression('2 10 - 5 * 9 + =')
 
         with self.assertRaises(ValueError):
             expression.evaluate_expression('')
-
-
 
 
 if __name__ == '__main__':
