@@ -6,6 +6,7 @@ class NativeDictionary:
         self.values = [None] * self.size
 
     def hash_fun(self, key):
+        key = str(key)
         hash_sum = 0
         for i in range(len(key)):
             hash_sum += ord(key[i])
