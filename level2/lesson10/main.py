@@ -3,20 +3,24 @@ class PowerSet:
     def __init__(self):
         self.slots = dict()
 
+    def hash_fun(self, value):
+        return value
+
     def size(self):
         return len(self.slots)
 
     def put(self, value):
-        key = hash(value)
+        key = self.hash_fun(value)
         self.slots[key] = value
 
     def get(self, value):
-        key = hash(value)
+        key = self.hash_fun(value)
         return key in self.slots
 
     def remove(self, value):
         if self.get(value):
-            self.slots.pop(value)
+            key = self.hash_fun(value)
+            self.slots.pop(key)
             return True
         return False
 

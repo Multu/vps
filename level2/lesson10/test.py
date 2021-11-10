@@ -27,7 +27,7 @@ class PowerSet(unittest.TestCase):
         self.assertEqual(self.power_set.get('123'), True)
         self.assertEqual(self.power_set.size(), 1)
 
-    def test_remove_exists_item(self):
+    def test_remove_exists_item_case1(self):
         self.power_set.put('test')
         self.power_set.put(18)
         self.power_set.put(56)
@@ -35,6 +35,13 @@ class PowerSet(unittest.TestCase):
         self.assertEqual(self.power_set.remove(18), True)
         self.assertEqual(self.power_set.get(18), False)
         self.assertEqual(self.power_set.size(), 2)
+
+    def test_remove_exists_item_case2(self):
+        self.power_set.put('511714')
+        self.power_set.put('511193')
+        self.power_set.put('761771')
+
+        self.assertEqual(self.power_set.remove('511714'), True)
 
     def test_remove_not_exists_item(self):
         self.power_set.put(1)
@@ -198,8 +205,8 @@ class PowerSet(unittest.TestCase):
         set2_items = [random.randint(0, 1000000) for i in range(max_items_count)]
 
         for i in range(max_items_count):
-            self.power_set.put(set1_items[i])
-            self.set2.put(set2_items[i])
+            self.power_set.put(str(set1_items[i]))
+            self.set2.put(str(set2_items[i]))
 
         start = time.time()
 
