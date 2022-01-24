@@ -46,8 +46,18 @@ class SimpleGraph(unittest.TestCase):
 
         self.assertEqual(dfs_nodes_values, [8, 1, 2, 3])
 
-    def test_not_exists_path(self):
+    def test_not_exists_path_case1(self):
         dfs_nodes = self.graph.DepthFirstSearch(4, 0)
+
+        dfs_nodes_values = []
+        for node in dfs_nodes:
+            dfs_nodes_values.append(node.Value)
+
+        self.assertEqual(dfs_nodes_values, [])
+
+    def test_not_exists_path_case2(self):
+        self.graph.RemoveEdge(6, 0)
+        dfs_nodes = self.graph.DepthFirstSearch(1, 2)
 
         dfs_nodes_values = []
         for node in dfs_nodes:

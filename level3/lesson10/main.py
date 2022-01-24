@@ -74,7 +74,7 @@ class SimpleGraph:
                         break
 
             if VNext < 0:
-                self.dfs_stack.pop(VTo)
+                self.dfs_stack.pop()
 
         dfs_vertex = []
         for vertex_ind in self.dfs_stack:
