@@ -16,3 +16,10 @@ FROM CITY
 WHERE 
   CountryCode = 'USA' 
   AND POPULATION > 120000;
+
+
+# Query all columns (attributes) for every row in the CITY table.
+
+SELECT 
+    * 
+FROM CITY 
